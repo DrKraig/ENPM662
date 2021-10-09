@@ -1,6 +1,5 @@
-<h1>ENPM662 - Robot Modeling</h1>
+# ENPM662 - Robot Modeling
+A collection of all projects in ENPM662 'Robot Modeling'
 
-  <h2>This repository is a collection of ROS packages</h2>
-
-    1. <a href="https://github.com/DrKraig/CMSC756">simple_pubsub</a></br> is a ROS string publisher-subsriber package.
-    
+  <h2>Projects performed so far- </h2>
+    1. Python Programming Practice: <a href="https://github.com/SamPusegaonkar/ENPM661/tree/main/Project0">Project 0</a></br>
