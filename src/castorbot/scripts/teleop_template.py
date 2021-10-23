@@ -21,14 +21,14 @@ CTRL-C to quit
 """
 
 moveBindings = {
-        'i':(1,0),
-        'o':(1,-1),
-        'j':(0,1),
-        'l':(0,-1),
-        'u':(1,1),
-        ',':(-1,0),
-        '.':(-1,1),
-        'm':(-1,-1),
+        'i':(-1,0),
+        'o':(-1,-1),
+        'j':(0,-1),
+        'l':(0,1),
+        'u':(-1,1),
+        ',':(1,0),
+        '.':(1,-1),
+        'm':(1,1),
            }
 
 speedBindings={
@@ -38,6 +38,7 @@ speedBindings={
         'x':(.9,1),
         'e':(1,1.1),
         'c':(1,.9),
+        '0':(0,0)
           }
 
 def getKey():
@@ -100,7 +101,7 @@ if __name__=="__main__":
                 control_turn = 0
             else:
                 count = count + 1
-                if count > 4:
+                if count > 40:
                     x = 0
                     th = 0
                 if (key == '\x03'):
@@ -125,9 +126,9 @@ if __name__=="__main__":
             print(control_speed)
             print(target_speed)
             print("----------------")
-            pub_right.publish(2) # publish the turn command.
-            pub_left.publish(2) # publish the turn command.
-            pub_move.publish(-2) # publish the control speed. 
+            pub_right.publish(control_turn) # publish the turn command.
+            pub_left.publish(control_turn) # publish the turn command.
+            pub_move.publish(control_speed) # publish the control speed. 
 
 
     except:
