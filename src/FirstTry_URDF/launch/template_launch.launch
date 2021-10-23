@@ -6,7 +6,7 @@
         <!-- For the arg name, give any name of your choice to this world -->
         <!-- for the value tag, provide the path to the world file that you downloaded -->
 	<include file="$(find gazebo_ros)/launch/empty_world.launch"> 
-		<!-- <arg name="empty_world" value=""/>  -->
+		<arg name="world_name" value="$(find FirstTry_URDF)/worlds/competition_arena.world"/>
 	</include>
 		
 
