@@ -1,0 +1,15 @@
+--- 
+FirstTry_URDF: 
+  rear_motor: 
+    joint: rear_axle_joint
+    pid: {p: 70, i: 0.01, d: 3.0}
+    type: velocity_controllers/JointVelocityController
+  joint_state_controller: 
+    publish_rate: 50
+    type: joint_state_controller/JointStateController
+  gazebo_ros_control:
+    pid_gains:
+      rear_axle_joint: 
+        p: 400.0 
+        i: 0.01 
+        d: 3.0

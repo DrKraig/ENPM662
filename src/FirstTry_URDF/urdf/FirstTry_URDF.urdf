@@ -4,14 +4,27 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="FirstTry_URDF">
+  <link name="dummy_link">
+  </link>
+  <joint name="dummy_joint" type="fixed">
+    <parent
+      link="dummy_link" />
+    <child
+      link="chasis" />
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <axis
+      xyz="0 0 0" />      
+  </joint>
   <link
     name="chasis">
     <inertial>
       <origin
-        xyz="0.0 0.0 -6.0"
+        xyz="0.0 0.0 -5.0"
         rpy="0 0 0" />
       <mass
-        value="50.0082010252954" />
+        value="10.00" />
       <inertia
         ixx="1.12027870972558"
         ixy="-0.0185928970398008"
@@ -51,7 +64,7 @@
         xyz="0 0.196163628606691 0"
         rpy="0 0 0" />
       <mass
-        value="5.50851834676472" />
+        value="0.5" />
       <inertia
         ixx="0.0286856446413934"
         ixy="3.11616198099933E-35"
@@ -97,10 +110,10 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="-1000000"
+      upper="1000000"
+      effort="10"
+      velocity="100" />
   </joint>
   <link
     name="right_castor">
@@ -109,7 +122,7 @@
         xyz="-5.55111512312578E-17 -0.0574241163490277 -1.11022302462516E-16"
         rpy="0 0 0" />
       <mass
-        value="1.31069724129228" />
+        value="0.5" />
       <inertia
         ixx="0.00457350619640945"
         ixy="2.46250393206182E-19"
@@ -167,7 +180,7 @@
         xyz="0 1.27000000000321E-05 0"
         rpy="0 0 0" />
       <mass
-        value="2.31666659443376" />
+        value="0.5" />
       <inertia
         ixx="0.00747310310032442"
         ixy="-2.0218146735629E-35"
@@ -225,14 +238,14 @@
         xyz="0 -0.0574241163490277 3.38271077815477E-17"
         rpy="0 0 0" />
       <mass
-        value="1.31069724129228" />
+        value="0.5" />
       <inertia
-        ixx="0.00457350619640944"
-        ixy="-6.58521875075794E-19"
-        ixz="-4.2966771958207E-19"
-        iyy="0.00432500957891741"
-        iyz="9.36358356690362E-19"
-        izz="0.00570892208149706" />
+        ixx="0.00747310310032442"
+        ixy="-2.0218146735629E-35"
+        ixz="-9.69728227153071E-37"
+        iyy="0.0127042752705515"
+        iyz="2.58175642323111E-20"
+        izz="0.00747310310032442" />
     </inertial>
     <visual>
       <origin
@@ -283,7 +296,7 @@
         xyz="1.11022302462516E-16 1.27000000000044E-05 0"
         rpy="0 0 0" />
       <mass
-        value="2.31666659443376" />
+        value="0.5" />
       <inertia
         ixx="0.00747310310032442"
         ixy="-2.0218146735629E-35"
@@ -334,4 +347,14 @@
       effort="0"
       velocity="0" />
   </joint>
+  <transmission name="rear_motor">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="rear_axle_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="rear_motor">
+    <mechanicalReduction>50</mechanicalReduction>
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </actuator>
+  </transmission>
 </robot>
