@@ -168,10 +168,10 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="-1000000"
+      upper="1000000"
+      effort="10"
+      velocity="100" />
   </joint>
   <link
     name="right_wheel">
@@ -226,10 +226,10 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="-1000000"
+      upper="1000000"
+      effort="10"
+      velocity="100" />
   </joint>
   <link
     name="left_castor">
@@ -284,10 +284,10 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="-1000000"
+      upper="1000000"
+      effort="10"
+      velocity="100" />
   </joint>
   <link
     name="left_wheel">
@@ -342,10 +342,10 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="-1000000"
+      upper="1000000"
+      effort="10"
+      velocity="100" />
   </joint>
   <transmission name="rear_motor">
   <type>transmission_interface/SimpleTransmission</type>
@@ -355,6 +355,28 @@
   <actuator name="rear_motor">
     <mechanicalReduction>50</mechanicalReduction>
     <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </actuator>
+  </transmission>
+
+  <transmission name="right_castor_motor">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="right_castor_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="right_castor_motor">
+    <mechanicalReduction>50</mechanicalReduction>
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </actuator>
+  </transmission>
+
+  <transmission name="left_castor_motor">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="left_castor_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="left_castor_motor">
+    <mechanicalReduction>50</mechanicalReduction>
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </actuator>
   </transmission>
 </robot>

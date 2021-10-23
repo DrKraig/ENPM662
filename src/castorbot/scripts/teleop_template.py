@@ -62,8 +62,8 @@ if __name__=="__main__":
     
     rospy.init_node('turtlebot_teleop')
 
-    #pub_right = rospy.Publisher('', Float64, queue_size=10) # Add your topic here between ''. Eg '/my_robot/steering_controller/command'
-    #pub_left = rospy.Publisher('', Float64, queue_size=10)
+    pub_right = rospy.Publisher('/FirstTry_URDF/right_castor_motor/command', Float64, queue_size=10) # Add your topic here between ''. Eg '/my_robot/steering_controller/command'
+    pub_left = rospy.Publisher('/FirstTry_URDF/left_castor_motor/command', Float64, queue_size=10)
     pub_move = rospy.Publisher('/FirstTry_URDF/rear_motor/command', Float64, queue_size=10) # Add your topic for move here '' Eg '/my_robot/longitudinal_controller/command'
 
     x = 0
@@ -125,8 +125,8 @@ if __name__=="__main__":
             print(control_speed)
             print(target_speed)
             print("----------------")
-            #pub_right.publish(control_turn) # publish the turn command.
-            #pub_left.publish(control_turn) # publish the turn command.
+            pub_right.publish(2) # publish the turn command.
+            pub_left.publish(2) # publish the turn command.
             pub_move.publish(-2) # publish the control speed. 
 
 
@@ -134,8 +134,8 @@ if __name__=="__main__":
         print e
 
     finally:
-        #pub_right.publish(control_turn)
-        #pub_left.publish(control_turn)
+        pub_right.publish(control_turn)
+        pub_left.publish(control_turn)
         pub_move.publish(control_speed)
         # twist = Twist()
         # twist.linear.x = 0; twist.linear.y = 0; twist.linear.z = 0
