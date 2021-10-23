@@ -1,0 +1,33 @@
+--- 
+FirstTry_URDF: 
+  joint_state_controller: 
+    publish_rate: 50
+    type: joint_state_controller/JointStateController
+  gazebo_ros_control:
+    pid_gains:
+      rear_axle_joint: 
+        p: 400.0 
+        i: 0.0 
+        d: 0.0
+      right_castor_joint: 
+        p: 400.0 
+        i: 0.0 
+        d: 0.0
+      left_castor_joint: 
+        p: 400.0 
+        i: 0.0 
+        d: 0.0
+  rear_motor: 
+    joint: rear_axle_joint
+    pid: {p: 70, i: 0.01, d: 3.0}
+    type: velocity_controllers/JointVelocityController
+  right_castor_motor: 
+    joint: right_castor_joint
+    pid: {p: 70, i: 0.01, d: 3.0}
+    type: effort_controllers/JointPositionController
+  left_castor_motor: 
+    joint: left_castor_joint
+    pid: {p: 70, i: 0.01, d: 3.0}
+    type: effort_controllers/JointPositionController
+
+
