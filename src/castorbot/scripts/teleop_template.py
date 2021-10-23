@@ -127,7 +127,7 @@ if __name__=="__main__":
             print("----------------")
             #pub_right.publish(control_turn) # publish the turn command.
             #pub_left.publish(control_turn) # publish the turn command.
-            pub_move.publish(3) # publish the control speed. 
+            pub_move.publish(-2) # publish the control speed. 
 
 
     except:

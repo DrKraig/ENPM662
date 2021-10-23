@@ -11,5 +11,5 @@ FirstTry_URDF:
     pid_gains:
       rear_axle_joint: 
         p: 400.0 
-        i: 0.01 
-        d: 3.0
+        i: 0.0 
+        d: 0.0
