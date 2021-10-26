@@ -1,16 +1,14 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 2.8.3)
+
 project(castorbot)
 
-find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-  std_msgs
-)
+find_package(catkin REQUIRED)
 
-catkin_package(
-  INCLUDE_DIRS include
-  CATKIN_DEPENDS roscpp rospy std_msgs
-)
+catkin_package()
 
-include_directories(${catkin_INCLUDE_DIRS})
+find_package(roslaunch)
 
+foreach(dir config launch meshes urdf)
+	install(DIRECTORY ${dir}/
+		DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
+endforeach(dir)
