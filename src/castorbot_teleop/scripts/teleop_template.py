@@ -61,11 +61,11 @@ def vels(speed,turn):
 if __name__=="__main__":
     settings = termios.tcgetattr(sys.stdin)
     
-    rospy.init_node('turtlebot_teleop')
+    rospy.init_node('castorbot_teleop')
 
-    pub_right = rospy.Publisher('/FirstTry_URDF/right_castor_motor/command', Float64, queue_size=10) # Add your topic here between ''. Eg '/my_robot/steering_controller/command'
-    pub_left = rospy.Publisher('/FirstTry_URDF/left_castor_motor/command', Float64, queue_size=10)
-    pub_move = rospy.Publisher('/FirstTry_URDF/rear_motor/command', Float64, queue_size=10) # Add your topic for move here '' Eg '/my_robot/longitudinal_controller/command'
+    pub_right = rospy.Publisher('/castorbot/right_castor_motor/command', Float64, queue_size=10) # Add your topic here between ''. Eg '/my_robot/steering_controller/command'
+    pub_left = rospy.Publisher('/castorbot/left_castor_motor/command', Float64, queue_size=10)
+    pub_move = rospy.Publisher('/castorbot/rear_motor/command', Float64, queue_size=10) # Add your topic for move here '' Eg '/my_robot/longitudinal_controller/command'
 
     x = 0
     th = 0
