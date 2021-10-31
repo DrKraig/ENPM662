@@ -19,7 +19,7 @@ def main():
             pub.publish(-10.0)
             pub_right.publish(-10.0)
             pub_left.publish(-10.0)
-            print("Published velocity command - -3")
+            print("Published velocity command - -10")
             rate.sleep()
         for i in range(1000):
             pub.publish(0.0)
