@@ -86,6 +86,9 @@ RUN sudo apt-get update && \
     sudo -H python2 -m pip install pycryptodomex gnupg tqdm && \
     sudo apt-get install -y python3.6-tk
 
+# Other Python3 libraries
+RUN sudo -H python3 -m pip install sympy && \
+
 # cmake 3.9
 WORKDIR /opt
 ADD --chown=user:1000 https://cmake.org/files/v3.9/cmake-3.9.6-Linux-x86_64.sh /opt/cmake-3.9.6-Linux-x86_64.sh
