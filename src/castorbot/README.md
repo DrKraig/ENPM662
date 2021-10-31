@@ -5,6 +5,7 @@ Castorbot ROS package
 
 1. Python 2 should be installed on your system.
 2. ROS melodic full-desktop installation 
+3. Run `$ sudo apt-get install ros-melodic-ros-control ros-melodic-ros-controllers`
 
 ## Instructions to build the package 
 1. Download the attachment on Canvas to your local machine
