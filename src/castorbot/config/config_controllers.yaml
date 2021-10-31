@@ -6,17 +6,17 @@ castorbot:
   gazebo_ros_control:
     pid_gains:
       rear_axle_joint: 
-        p: 400.0 
-        i: 0.0 
-        d: 0.0
+        p: 70.0 
+        i: 0.001 
+        d: 1.0
       right_castor_joint: 
         p: 20.0 
-        i: 0.0 
-        d: 0.0
+        i: 0.01 
+        d: 1.0
       left_castor_joint: 
         p: 20.0 
-        i: 0.0 
-        d: 0.0
+        i: 0.01 
+        d: 1.0
   rear_motor: 
     joint: rear_axle_joint
     pid: {p: 70, i: 0.01, d: 3.0}
