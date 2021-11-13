@@ -91,38 +91,6 @@ RUN sudo chmod +x /opt/cmake-3.16.9-Linux-x86_64.sh && \
     bash -c "yes Y | sudo /opt/cmake-3.16.9-Linux-x86_64.sh" && \
     bash -c "sudo ln -s /opt/cmake-3.16.9-Linux-x86_64/bin/* /usr/local/bin"
 
-
-# Pangolin
-RUN cd /home/$USER/apps && \
-    git clone https://github.com/stevenlovegrove/Pangolin.git && \
-    sudo apt-get update && \
-    sudo apt install -y --allow-unauthenticated --no-install-recommends \
-    libglew-dev \
-    libgl1-mesa-dev \
-    libopenni2-dev \
-    libjpeg-dev \
-    libpng-dev \
-    libtiff5-dev \
-    libopenexr-dev && \
-    cd /home/$USER/apps/Pangolin && \
-    mkdir -p /home/$USER/apps/Pangolin/build && \
-    git submodule init && git submodule update && \
-    cd /home/$USER/apps/Pangolin/build && \
-    cmake -DCMAKE_CXX_FLAGS=-std=c++11 -DCMAKE_BUILD_TYPE=Release -DBUILD_TOOLS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_PANGOLIN_PYTHON=OFF ../ && \
-    make -j4 && \
-    cmake --build . && \
-    sudo make install
-
-
-# cilantro
-RUN cd /home/$USER/apps && \
-    git clone https://github.com/kzampog/cilantro.git && \
-    mkdir -p /home/$USER/apps/cilantro/build && \
-    cd /home/$USER/apps/cilantro/build && \
-    cmake -DBUILD_EXAMPLES=OFF -DENABLE_NON_DETERMINISTIC_PARALLELISM=OFF ../ && \
-    make -j4 && \
-    sudo make install
-
 # Startup stuff
 WORKDIR /home/$USER/workspace
 CMD bash -c echo /usr/local/lib/x86_64-linux-gnu | sudo tee /etc/ld.so.conf.d/glvnd.conf && sudo ldconfig && terminator -T 'Dexterous Hand Container'
