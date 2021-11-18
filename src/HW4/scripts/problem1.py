@@ -131,7 +131,7 @@ def print_list(a,text):
 
 def main():
     # The code is available on
-    # 
+    # https://github.com/DrKraig/ENPM662/tree/devel/src/HW4
      
     d1,d3,d5,d7 = 360.0,420.0,399.5,205.5
     d = np.array([d1,0,d3,0,d5,0,d7])    
