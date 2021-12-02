@@ -42,3 +42,20 @@ After the setup, run this command anytime after starting the container
 
 ### To get into the container when it is already started 
 sudo docker exec -u user -it ShadowContainer /bin/bash
+
+
+### Grasping pipeline
+
+We have 4 different door knobs.
+
+1. Flat push
+2. Pull handle
+3. L knob
+4. Ball knob
+
+Design a grasp controller using joint state controllers
+
+We will manually place the hand near the object. With some hardcoded pre-grasp pose
+and then we will pick one of the pre-grasp pose for each object from which the joint state controller succeds. (Need to fill in why we chose that pose using kinematic analysis).
+
+First spawn the door -> manually set the pre-grasp -> allow the controller to do its job -> if succeded use the pre-grasp else repeat until success.
