@@ -55,9 +55,12 @@ int main(int argc, char** argv)
     std::string end_effector_name = "";
     moveit::planning_interface::MoveGroupInterface::Plan output_plan;
     geometry_msgs::Pose first_pose;
-    first_pose.position.x = 0.5;
-    first_pose.position.y = 0.1;
+    first_pose.position.x = 1;
+    first_pose.position.y = 0.5;
     first_pose.position.z = 1.0;
+
+    ros::AsyncSpinner spinner(1);
+    spinner.start();
 
     bool plan_status = false;
     plan_status = planToPoseTarget(default_options,move_group,first_pose,ref_frame,output_plan,end_effector_name);

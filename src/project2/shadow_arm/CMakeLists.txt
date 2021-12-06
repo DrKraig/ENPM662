@@ -15,16 +15,16 @@ find_package(catkin REQUIRED COMPONENTS
   moveit_core
   moveit_visual_tools
   shadowlibs
+  trajectory_msgs
 )
 
 catkin_package(
   INCLUDE_DIRS include
   CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs tf2 tf2_ros moveit_msgs moveit_ros_planning     
-  moveit_ros_planning_interface moveit_core moveit_visual_tools shadowlibs
+  moveit_ros_planning_interface moveit_core moveit_visual_tools shadowlibs trajectory_msgs
 )
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(pregrasp_pose_publisher src/pregrasp_pose_publisher.cpp)
+add_executable(pregrasp_pose_publisher src/pregrasp_pose_publisher.cpp )
 target_link_libraries(pregrasp_pose_publisher ${catkin_LIBRARIES})
-
