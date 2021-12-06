@@ -3,6 +3,7 @@
 import rospy
 from trajectory_msgs.msg import JointTrajectory
 from trajectory_msgs.msg import JointTrajectoryPoint
+
 def talker():
     first_finger = JointTrajectory()
     first_finger.joint_names = ["rh_FFJ1", "rh_FFJ2", "rh_FFJ3", "rh_FFJ4", "rh_LFJ1",

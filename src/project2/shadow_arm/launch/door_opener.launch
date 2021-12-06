@@ -18,4 +18,16 @@
 		output="screen" 
 	/>
 
+	<node
+		name="hand_initializer"
+		pkg="shadow_arm"
+		type="hand_initializer.py"
+	/>
+
+	<node
+		name="pregrasp_pose_publisher"
+		pkg="shadow_arm"
+		type="pregrasp_pose_publisher"
+	/>
+	
 </launch>
