@@ -51,14 +51,14 @@
         xyz="0.45 0 0.9"
         rpy="0 0 0" />
       <mass
-        value="2" />
+        value="0.01" />
       <inertia
-        ixx="56.39"
+        ixx="0.001"
         ixy="-0.0076459"
         ixz="-0.0069729"
-        iyy="66.775"
+        iyy="0.001"
         iyz="-0.0019667"
-        izz="10.686" />
+        izz="0.001" />
     </inertial>
     <visual>
       <origin
@@ -71,7 +71,7 @@
       <material
         name="">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0.1 0.9 0.1 1" />
       </material>
     </visual>
     <collision>
