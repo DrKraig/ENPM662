@@ -14,14 +14,38 @@ The slides can be found [here](https://docs.google.com/presentation/d/1GIJ2iy-gm
 
 # How to build the project
 ```
+Open Terminal
+
 xhost +
 
 xhost local:root
+
+Download the docker image file from https://github.com/DrKraig/ENPM662/blob/devel/docker/project2.Dockerfile
+
+docker build project2.Dockerfile
 
 docker run -d -it --name ShadowContainer -e interface=eht1 -e DISPLAY=$DISPLAY -e LOCAL_USER_ID=1000 -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v ~/Documents/Projects/ShadowProject/shadowhand:/home/user/workspace/src/shadowhand:rw -v ~/Documents/Projects/ShadowProject/shadowlibs:/home/user/workspace/src/shadowlibs:rw -v ~/Documents/Projects/ShadowProject/project2:/home/user/workspace/src/project2:rw --security-opt seccomp=unconfined --network=host --pid=host --gpus all --privileged --device=/dev:/dev --runtime=nvidia shadow_image:latest
 
 sudo docker exec -u user -it ShadowContainer /bin/bash
 
+roscd sr_config
+
+git checkout shadowrobot_170911
+
+rm -rf $(rospack find sr_cyberglove_config)
+
+cd ~/workspace
+
+catkin_make
+
+source devel/setup.bash
+
+roscd shadowhand
+
+cd custom
+
+# Copy only the `shadowhand.world` file and the `sr_right_ur10arm_hand.launch` files.
+./custom_files_setup.py # press 0 and 2
 ```
 
 # How to run the project
