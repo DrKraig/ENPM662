@@ -66,6 +66,11 @@ python3 inverse_kinematics_validation.py
 ```
 
 # Results
+<h2> Final Video</h2>
+<p align="center">
+  <img src="./shadow_arm/results/Final_GIF.gif" alt="Logo"/>
+</p>
+
 <h2> Validating Inverse Kinematics</h2>
 <p align="center">
   <img src="./shadow_arm/results/IK_Door_Opening_curve2.png" alt="Logo"/>
