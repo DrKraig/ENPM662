@@ -50,13 +50,36 @@ cd custom
 
 # How to run the project
 ```
+#To run the simulation
 #Open 3 terminals
 #Go to your workspace and source in all the 3 terminals 
 roslaunch shadow_arm door_opener
 rosrun shadow_arm starter.py
 rosrun shadow_arm grasper.py
 
+#To validate forward_kinematics 
+python3 forward_kinematics_validation.py
+
+#To validate inverse_kinematics 
+python3 inverse_kinematics_validation.py
+
 ```
+
+# Results
+<h2> Validating Inverse Kinematics</h2>
+<p align="center">
+  <img src="./shadow_arm/results/IK_Door_Opening_curve2.png" alt="Logo"/>
+</p>
+
+<h2> Grasping the door</h2>
+<p align="center">
+  <img src="./shadow_arm/results/grasp.png" alt="Logo"/>
+</p>
+<h2>Opening the door</h2>
+<p align="center">
+  <img src="./shadow_arm/results/door_opening.png" alt="Logo"/>
+</p>
+
 
 # References & Some important topics for debugging
 
