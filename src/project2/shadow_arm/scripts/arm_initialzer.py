@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import numpy as np
 import rospy
 from trajectory_msgs.msg import JointTrajectory
@@ -40,21 +40,21 @@ class UR10:
     def o(self,n):
         T = self.T_world
         for i in range(n):
-            T = np.matmul(T, self.A(i))
+            T = np.matmul(T, self.A(i)) 
         o = T[0:3,3]
         return o
     
     def z(self,n):
         T = self.T_world
         for i in range(n):
-            T = np.matmul(T, self.A(i))
+            T = np.matmul(T, self.A(i)) 
         z = T[0:3,2]
         return z
 
     def T(self,n):
         T = self.T_world
         for i in range(n):
-            T = np.matmul(T, self.A(i))
+            T = np.matmul(T, self.A(i)) 
         return T
     
     def J(self):
@@ -71,23 +71,23 @@ class UR10:
         return jacobian
 
     def FVK(self,qdot):
-        Xdot = np.matmul(self.J(), qdot.reshape(6,1))
+        Xdot =  np.matmul(self.J(), qdot.reshape(6,1)) 
         return Xdot
 
     def IVK_circle(self,t):
         omega = 2*np.pi/60
         radius = 0.766 # mm
+        r2 = 0.720
         xdot = -radius*omega*np.sin(omega*t + np.pi/2 + np.pi/12)
         zdot = 0
         ydot = radius*omega*np.cos(omega*t + np.pi/2 + np.pi/12)
         # Assuming that the tool frame doesn't rotate
         pitch_velocity =  omega
-        Xdot = np.array([xdot,ydot,zdot,0,pitch_velocity,0]).reshape(6,1)
+        Xdot = np.array([xdot,ydot,zdot,0,0,0]).reshape(6,1)
         Jinv = np.linalg.inv(self.J())
-        qdot = np.matmul(Jinv, Xdot)
+        qdot = np.matmul(Jinv, Xdot )
         qdot = qdot.reshape(6,1)
         return qdot, Jinv
-
 
 def talker():
 
@@ -97,38 +97,41 @@ def talker():
     robot = UR10(q,d)
     robot.T_world = np.array([[-1,0,0,0],[0,-1,0,0],[0,0,1,0.765],[0,0,0,1]]) 
 
-    end_time = 5
+    end_time = 10
     time_steps = 2000
     dt = end_time/time_steps
     T = np.linspace(0,end_time,time_steps)
     
-
-
     arm = JointTrajectory()
     arm.joint_names = ["ra_shoulder_pan_joint", "ra_shoulder_lift_joint", "ra_elbow_joint", "ra_wrist_1_joint",
   "ra_wrist_2_joint", "ra_wrist_3_joint"]
 
+#     arm.joint_names = ["ra_elbow_joint", "ra_shoulder_lift_joint", "ra_shoulder_pan_joint", "ra_wrist_1_joint",
+#   "ra_wrist_2_joint", "ra_wrist_3_joint"]
+
     print("computing")
-    counter = 1
-    tal = 0
-    tal2 = 0
+    counter = 0
+    time_counter = 1
+    length = 6
+
     for t in T:
-        newPoint = JointTrajectoryPoint()
-        length = 6
-        newPoint.velocities = [ 0.0 for _ in range(length)]
         qdot,Jinv = robot.IVK_circle(t)
+        # print(qdot)
         q = robot.get_joints()
+        # print(q)
         q += qdot*dt
-        newPoint.positions = q.reshape(6).tolist()
-        tal += 2500000
-        if tal > 1e+9:
-            tal -= 1e+9
-            tal2 += 1
-        #newPoint.time_from_start.secs = tal2      
-        #newPoint.time_from_start.nsecs = tal
-        arm.points.append(newPoint)
-        counter += 1
+        print(q)
         robot.set_joints(q)
+        if ( counter % 100  == 0):
+            newPoint = JointTrajectoryPoint()
+            newPoint.velocities = [ 0.0 for _ in range(length)]
+            newPoint.positions = q.reshape(6).tolist()
+            # print(q * 180/np.pi)
+            newPoint.time_from_start.secs = time_counter      
+            arm.points.append(newPoint)
+            time_counter += 1
+        counter += 1
+        
     print("completed")
     counter = 0
     rate = rospy.Rate(100) # 10hz

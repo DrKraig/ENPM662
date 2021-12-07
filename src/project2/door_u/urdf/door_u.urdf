@@ -11,14 +11,14 @@
         xyz="0.45 0.45 0.05"
         rpy="0 0 0" />
       <mass
-        value="10" />
+        value="1000" />
       <inertia
-        ixx="13.249"
+        ixx="130.249"
         ixy="-7.2974E-17"
         ixz="2.1091"
-        iyy="14.012"
+        iyy="140.012"
         iyz="1.2485E-14"
-        izz="11.701" />
+        izz="110.701" />
     </inertial>
     <visual>
       <origin

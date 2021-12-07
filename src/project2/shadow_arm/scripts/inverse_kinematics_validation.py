@@ -73,7 +73,7 @@ class UR10:
         ydot = radius*omega*np.cos(omega*t + np.pi/2 + np.pi/12)
         # Assuming that the tool frame doesn't rotate
         pitch_velocity =  omega
-        Xdot = np.array([xdot,ydot,zdot,0,pitch_velocity,0]).reshape(6,1)
+        Xdot = np.array([xdot,ydot,zdot,0,0,0]).reshape(6,1)
         Jinv = np.linalg.inv(self.J())
         qdot = Jinv @ Xdot
         qdot = qdot.reshape(6,1)
@@ -141,8 +141,8 @@ def main():
     #     print(robot.T(i))
     #     print("---------")
     # print("################################")
-    print(robot.o(6))
-    end_time = 5
+    # print(robot.o(6))
+    end_time = 10
     time_steps = 2000
     dt = end_time/time_steps
     T = np.linspace(0,end_time,time_steps)
@@ -168,7 +168,7 @@ def main():
         ax1.plot(o[0],o[1],o[2],c='k',marker='.')
         Jinv_list.append(Jinv)
         qdot_list.append(qdot)
-        o_list.append(o)
+        o_list.append(o)    
     # ax1.set_xlim(-1,1)
     # ax1.set_ylim(-2,2)
     ax1.set_zlim(0,2)
