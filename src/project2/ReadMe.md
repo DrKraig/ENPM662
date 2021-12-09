@@ -51,11 +51,13 @@ cd custom
 # How to run the project
 ```
 #To run the simulation
-#Open 3 terminals
+#Open 4 terminals using terminator
 #Go to your workspace and source in all the 3 terminals 
-roslaunch shadow_arm door_opener
-rosrun shadow_arm starter.py
-rosrun shadow_arm grasper.py
+roslaunch shadow_arm door_opener   #In terminal 1
+rosrun shadow_arm starter.py       #In terminal 2
+rosrun shadow_arm grasper.py       #In terminal 2
+rostopic pub /relay "Open Door" -r 100  #In terminal 3
+rosrun shadow_arm arm_initialzer.py    #In terminal 4
 
 #To validate forward_kinematics 
 python3 forward_kinematics_validation.py
