@@ -56,7 +56,8 @@ class UR10:
             j = np.hstack((j,p))
         jacobian = j[:,1:]
         if abs(np.linalg.det(jacobian)) <= 1e-1:
-            print("singular warning!", abs(np.linalg.det(jacobian)))
+            #print("singular warning!", abs(np.linalg.det(jacobian)))
+            pass
 
         return jacobian
 
@@ -127,32 +128,58 @@ def print_list(a,text):
 def main():
     # The code is available on
     # https://github.com/DrKraig/ENPM662/tree/devel/src/HW4
-    print("Validing for angles (0,0,0,0,0,0)")
+     
     d = np.array([0.1273,0,0,0.163941,0.1157,0.0922])    
-    q = np.zeros(6)
-    # q = np.array([0.09523985696467108, -0.7183862276793844, 0.48845086571663465, 0.22925462512416583, 1.6656604751690187, -1.571821596664277])
+    q = np.array([0.09523985696467108, -0.7183862276793844, 0.48845086571663465, 0.22925462512416583, 1.6656604751690187, -1.571821596664277])
     q = q.reshape(6,1)
     robot = UR10(q,d)
     robot.T_world = np.array([[-1,0,0,0],[0,-1,0,0],[0,0,1,0.765],[0,0,0,1]]) 
 
-    print("Transformation matrices from each frame to ground frame :")
-    for i in range(1,7):
-        print("Tranformation matrix of frame",i)
-        print(robot.T(i))
-        print("---------")
+    # print("Transformation matrices from each frame to ground frame :")
+    # for i in range(1,7):
+    #     print("Tranformation matrix of frame",i)
+    #     print(robot.T(i))
+    #     print("---------")
+    # print("################################")
     print(robot.o(6))
-    print("################################################################")
-    print("Validing for angles (-90,0,0,0,0,0)")
-    q = np.array([-90,0,0,0,0,0]) *np.pi/180
-    q = q.reshape(6,1)
-    robot.q = q
-    print("Transformation matrices from each frame to ground frame :")
-    for i in range(1,7):
-        print("Tranformation matrix of frame",i)
-        print(robot.T(i))
-        print("---------")
-    print(robot.o(6))
-    print("################################################################")
+    end_time = 10
+    time_steps = 2000
+    dt = end_time/time_steps
+    T = np.linspace(0,end_time,time_steps)
+    
+    fig = plt.figure()
+    ax1 = fig.add_subplot(projection='3d')
+    plt.ion()
+    plt.axis('auto')
+    
+    # Simulating the robot over time
+    print("Simulation has started please wait for the output")
+    print("Note: The axes of the output are not equally scaled!!!")
+    print("So circles might appear as ellipses")
+    Jinv_list = []
+    qdot_list = []
+    o_list = []
+    counter = 0
+    for t in T:
+        qdot,Jinv = robot.IVK_circle(t)
+        q = robot.get_joints()
+        q += qdot*dt
+        robot.set_joints(q)
+        o = robot.o(6).tolist()
+        ax1.plot(o[0],o[1],o[2],c='k',marker='.')
+        Jinv_list.append(Jinv)
+        qdot_list.append(qdot)
+        o_list.append(o)
+        
+    # ax1.set_xlim(-1,1)
+    # ax1.set_ylim(-2,2)
+    # ax1.set_zlim(0,2)
+    ax1.set_xlabel("X axis")
+    ax1.set_ylabel("Y axis")
+    ax1.set_zlabel("Z axis")
+    ax1.set_title("Trajectory of end effector")
+    plt.pause(340)
+
 
 if __name__ == '__main__':
     main()

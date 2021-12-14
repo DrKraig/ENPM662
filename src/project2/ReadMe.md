@@ -51,13 +51,11 @@ cd custom
 # How to run the project
 ```
 #To run the simulation
-#Open 4 terminals using terminator
+#Open 3 terminals
 #Go to your workspace and source in all the 3 terminals 
-roslaunch shadow_arm door_opener   #In terminal 1
-rosrun shadow_arm starter.py       #In terminal 2
-rosrun shadow_arm grasper.py       #In terminal 2
-rostopic pub /relay "Open Door" -r 100  #In terminal 3
-rosrun shadow_arm arm_initialzer.py    #In terminal 4
+roslaunch shadow_arm door_opener
+rosrun shadow_arm starter.py
+rosrun shadow_arm grasper.py
 
 #To validate forward_kinematics 
 python3 forward_kinematics_validation.py
@@ -68,11 +66,6 @@ python3 inverse_kinematics_validation.py
 ```
 
 # Results
-<h2> Final Video</h2>
-<p align="center">
-  <img src="./shadow_arm/results/Final_GIF.gif" alt="Logo"/>
-</p>
-
 <h2> Validating Inverse Kinematics</h2>
 <p align="center">
   <img src="./shadow_arm/results/IK_Door_Opening_curve2.png" alt="Logo"/>
