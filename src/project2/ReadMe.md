@@ -11,7 +11,7 @@ The slides can be found [here](https://docs.google.com/presentation/d/1GIJ2iy-gm
  * NVidia Graphic Drivers installed on your local system
  * [Docker Nvidia](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
  * CMake
-
+ * Sympy
 # How to build the project
 ```
 Open Terminal
