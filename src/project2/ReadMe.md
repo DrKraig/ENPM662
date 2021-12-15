@@ -53,15 +53,15 @@ cd custom
 #To run the simulation
 #Open 3 terminals
 #Go to your workspace and source in all the 3 terminals 
-roslaunch shadow_arm door_opener
+roslaunch shadow_arm door_opener.launch
 rosrun shadow_arm starter.py
 rosrun shadow_arm grasper.py
+rosrun shadow_arm arm_initializer.py
 
 #To validate forward_kinematics 
 python3 forward_kinematics_validation.py
 
-#To validate inverse_kinematics 
-python3 inverse_kinematics_validation.py
+#To validate inverse_kinematics run the simulation steps listed above!
 
 ```
 
